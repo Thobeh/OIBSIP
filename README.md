@@ -1,4 +1,4 @@
-# Amazon Electronics Store Analytics Pipeline
+8# Amazon Electronics Store Analytics Pipeline
 
 An end-to-end data diagnostics, processing, and exploratory data analysis (EDA) pipeline built in Python. This project evaluates a production dataset containing **50,000 corporate transaction records** across **26 operational variables** to isolate macroeconomic cycles, calculate elasticity, identify major revenue drivers, and map margin erosion.
 
@@ -108,9 +108,4 @@ def df_hex(store_df):
 ### 4. Price Elasticity via Density Mapping
 * **Volume Inelasticity:** The hexagonal concentration map reveals that the highest purchase frequency (over **6,000+ orders**) occurs exclusively at a **0.0 discount rate** across all quantity tiers (1 through 5). Lowering prices to 10%, 20%, 40%, or 60% fails to move buyers into higher-volume groupings.
 * **Business Takeaway:** Widespread discounting is highly inefficient. Customers purchase identical quantities regardless of price incentives, meaning markdowns only degrade margins without generating a meaningful lift in sales volume.
-
----
-
-## 📄 License
-Distributed under the MIT License. See `LICENSE` for more information.
 
