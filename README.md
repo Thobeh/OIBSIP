@@ -1,4 +1,4 @@
-8# Amazon Electronics Store Analytics Pipeline
+# A. Amazon Electronics Store Analytics Pipeline
 
 An end-to-end data diagnostics, processing, and exploratory data analysis (EDA) pipeline built in Python. This project evaluates a production dataset containing **50,000 corporate transaction records** across **26 operational variables** to isolate macroeconomic cycles, calculate elasticity, identify major revenue drivers, and map margin erosion.
 
@@ -109,3 +109,90 @@ def df_hex(store_df):
 * **Volume Inelasticity:** The hexagonal concentration map reveals that the highest purchase frequency (over **6,000+ orders**) occurs exclusively at a **0.0 discount rate** across all quantity tiers (1 through 5). Lowering prices to 10%, 20%, 40%, or 60% fails to move buyers into higher-volume groupings.
 * **Business Takeaway:** Widespread discounting is highly inefficient. Customers purchase identical quantities regardless of price incentives, meaning markdowns only degrade margins without generating a meaningful lift in sales volume.
 
+# B. Customer Segmentation & Analytics Pipeline (RFM + CLV + K-Means)
+
+An end-to-end data science and business intelligence pipeline engineered in Python to ingest raw transactional sales logs, perform data cleaning, extract high-value customer health features (RFM metrics), calculate Customer Lifetime Value (CLV), and systematically categorize users into action-oriented value tiers using K-Means clustering.
+
+## Pipeline Architecture & Features
+
+This system automatically translates tabular, raw transaction-level databases into strategic marketing layers using the following modular functions:
+
+1. **Ingestion & Integrity Assessment (`load_inspect`)**: Checks dimensions, scans for structural issues, null flags, and duplicated entry records.
+2. **Data Type Harmonization (`df_clean`)**: Safely casts transactional timestamps and coerces monetary fields into numerical floats.
+3. **Null Imputation Layer (`handle_nulls`)**: Dynamically isolates and fills gaps—using non-numeric categorical modes or statistical numeric averages.
+4. **Column Standardization (`standardize_cols`)**: Sanitizes fields into a globally accessible `snake_case` taxonomy.
+5. **Feature Engineering Engine (`rfm_clv`)**:
+   * **Recency (R)**: Days elapsed between the user's latest transaction and the historical data snapshot window.
+   * **Frequency (F)**: Aggregate unique volume of specific transaction occurrences.
+   * **Monetary (M)**: Aggregate absolute monetary spend profile across time.
+   * **Churn Diagnostics**: Automatically flags churned states against defined threshold horizons (e.g., 90 days) and builds cohort metrics.
+   * **CLV Mapping**: Infers explicit Customer Lifetime Value based on dynamic Average Purchase Value (APV) scaling.
+6. **Machine Learning Normalization & Cluster Optimization (`apply_customer_segmentation`)**: Runs mathematical standard scaling (`StandardScaler`), builds a Within-Cluster Sum of Squares (WCSS) iteration loop, generates a dynamic **Elbow Plot**, and maps optimal user-tier index keys back to customer entities.
+7. **Production Business Reporting (`execute_cluster_analytics_report`)**: Renders bivariate cluster boundary scatter subplots, customer account volume counts, and yields a natural language processing mapping framework to output data-driven strategic marketing recommendations.
+
+---
+
+## Repository File Layout
+
+```text
+├── data/
+│   └── AfroSense Sales Data.xlsx     # Target raw transactional ledger file
+├── customer_analytics_pipeline.ipynb # Core algorithmic notebook workflow
+└── README.md                         # Pipeline documentation and architecture
+```
+
+---
+
+## Technical Prerequisites & Environment
+
+Ensure you have a modern Python 3.x distribution environment installed. The pipeline heavily utilizes the following analytics libraries:
+
+```bash
+pip install numpy pandas matplotlib seaborn scikit-learn openpyxl
+```
+
+---
+
+## How to Execute the Pipeline
+
+Open `customer_analytics_pipeline.ipynb` inside your target notebook server environment or IDE. To run the structural execution pattern programmatically, follow this functional order:
+
+```python
+import pandas as pd
+# Import functions defined within the notebook cells...
+
+# 1. Load data
+_file = "data/AfroSense Sales Data.xlsx"
+raw_df = pd.read_excel(_file)
+
+# 2. Run sequential cleaning and transformation
+inspected_df   = load_inspect(raw_df)
+standardized   = standardize_cols(inspected_df)
+cleaned        = df_clean(standardized)
+null_cleansed  = handle_nulls(cleaned)
+
+# 3. Structural feature extraction (RFM matrix + CLV modeling)
+customer_profiles = rfm_clv(null_cleansed)
+
+# 4. Fit K-Means Clustering model (Runs Elbow Plot & Labels Datasets)
+segmented_df = apply_customer_segmentation(customer_profiles)
+
+# 5. Renders comprehensive scatter/bar analytics plots & strategic summaries
+execute_cluster_analytics_report(segmented_df)
+```
+
+---
+
+## Visualizations & Automated Reporting Outputs
+
+### 1. Optimal Cluster (K Parameter) Selection
+The pipeline renders a diagnostic **Elbow Method Curve** using calculated WCSS metrics up to K=10. It superimposes a typical mathematical elbow benchmark at K=3 to help you decide how many customer tiers are ideal for your dataset.
+
+### 2. Segment Splitting Evaluation Plots
+Generates multi-pane internal visual comparisons mapping **Recency vs. Monetary** boundaries and **Frequency vs. Monetary** boundaries to prove variance separation between customer types.
+
+### 3. Automatically Generated Marketing Frameworks
+Based on data traits processed during execution, the reporting engine classifies and prints customized strategy briefs for each value tier:
+* 🏆 **Core Champions / VIP Accounts**: Characterized by high transaction frequency and strong total spend. *Recommendation*: Roll out loyalty club benefits, exclusive product pre-access, and focus on premium upsells over heavy discounts.
+* 🚀 **Promising New / Mid-Tier Accounts**: High-potential recent buyers. *Recommendation*: Trigger product education welcome loops and deliver second-purchase bundle rewards to systematically drive transaction frequency.
+* ⚠️ **Churn Risk Inactive Cohort**: Customers who haven't purchased in a long time with flagging system engagement. *Recommendation*: Deploy time-sensitive recovery coupon codes via automated win-back funnels and trigger survey diagnostics to address points of friction.
