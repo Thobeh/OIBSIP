@@ -193,6 +193,80 @@ Generates multi-pane internal visual comparisons mapping **Recency vs. Monetary*
 
 ### 3. Automatically Generated Marketing Frameworks
 Based on data traits processed during execution, the reporting engine classifies and prints customized strategy briefs for each value tier:
+
+# Algorithmic Data Profiling & Cleansing Pipeline
+
+A modular, automated Python pipeline engineered to perform end-to-end Extraction, Transformation, and Loading (ETL) tasks on raw, structurally flawed transaction datasets. This framework programmatically identifies and treats standard corporate data anomalies—including missing entries, data type mismatches, statistical outliers, and identity conflicts—to generate highly reliable tables ready for downstream Machine Learning models and Business Intelligence dashboards.
+
+## 🚀 Key Features & Architectural Overview
+
+*   **Baseline Quality Snapshotting:** Benchmarks incoming dataset health by compiling matrix row configurations, total null footprints, and exact duplicate logs prior to any transformation execution.
+*   **Column Name Standardisation:** Programmatically enforces clear naming rules by stripping out white spaces, forcing lowercase text, and swapping spaces with clean snake_case markers.
+*   **Dynamic Identity Resolution:** Implements a strict duplicate handling mechanism. It distinguishes between global duplicates and partial value variations under identical primary keys, safely applying time-series overrides to keep only the newest records.
+*   **Multi-Strategy Value Imputation:** Applies targeted handling for missing data:
+    *   *Numerical Fields:* Standardises fields and replaces missing values with structural column averages.
+    *   *Categorical Fields:* Identifies gaps and fills them with the most frequent data grouping (Mode).
+    *   *Temporal Fields:* Ensures chronological consistency by filling missing dates with the most common date entry.
+*   **Statistical Outlier Treatment:** Leverages absolute Z-Scores from the `scipy.stats` engine to isolate and discard mathematical anomalies falling outside three standard deviations.
+
+## 🛠️ Tech Stack & Dependencies
+
+*   **Language:** Python 3.12+
+*   **Libraries:** `pandas`, `numpy`, `scipy`
+*   **Environment:** Jupyter Notebook / Google Colab
+
+## 📂 Project Structure & Script Breakdown
+
+The pipeline runs sequentially through specialized, functional modules:
+
+| Function Module | Operational Responsibility |
+| :--- | :--- |
+| `initial_copy(df)` | Benchmarks structural dimensions and saves a deep memory backup copy of the raw dataset. |
+| `col_standard(df)` | Cleans structural metadata into clean lowercase `snake_case` column headers. |
+| `generate_quality_report(data)` | Audits missing fields, exact duplicates, and field layout summaries. |
+| `find_partial_duplicates(df, key)` | Isolates mismatched entries sharing an identical primary key value. |
+| `resolve_by_latest_date(df, key, date)` | Parses mixed timelines to preserve only the most recent transaction snapshot. |
+| `text_col_standard(df, col)` | Scrubs strings using Regex (`[^0-9.]`) to isolate numbers and casts fields to numeric types. |
+| `date_standard(df, date_col)` | Resolves mixed temporal text layouts into standardised `datetime64[ns]` fields. |
+| `fill_nulls(df)` | Executes Mean/Mode imputation algorithms across numerical, categorical, and temporal fields. |
+| `outlier_treat(df, col_name)` | Removes statistical anomalies using a standard ±3σ Z-Score filter boundary. |
+
+## 📊 Pipeline Execution Profile (Dataset Analysis Results)
+
+When evaluated against a messy sales dataset containing `159 rows` and `7 columns`, the pipeline achieved the following operational milestones:
+
+1.  **Initial Audit:** Detected `22 missing fields` and `8 exact duplicate rows`.
+2.  **Structural Cleaning:** Reconfigured arbitrary headers (` Order ID `, ` Unit_Price_$`, etc.) into reliable keys (`order_id`, `unit_price_$`).
+3.  **Conflict Resolution:** Located critical business-rule conflicts (e.g., Order `1010` assigned to two different delivery locations). Automatically kept the correct entry based on chronological order.
+4.  **Imputation Run:** Replaced missing counts in the `quantity` column with the dataset average (`9.59`) and fixed missing text entries with the row mode (`Customer_10`).
+5.  **Output Integrity:** Generated a cleaned, normalized data table containing `150 rows` across `7 fully verified columns`, matching standard target database schemas.
+
+## 💻 Quick Start & Usage
+
+To execute the data cleaning pipeline on your own machine or inside a Google Colab notebook instance, clone this repository and follow the snippet below:
+
+```python
+import pandas as pd
+from pipeline_script import initial_copy, col_standard, remove_dup, text_col_standard, date_standard, fill_nulls, outlier_treat, resolve_by_latest_date
+
+# Ingest raw transaction file
+raw_data = pd.read_csv("messy_sales_data.csv")
+
+# Run through the modular ETL pipeline steps sequentially
+df_snapshot = initial_copy(raw_data)
+df_clean_cols = col_standard(df_snapshot)
+df_deduped   = remove_dup(df_clean_cols)
+df_numeric   = text_col_standard(df_deduped, "unit_price_\$")
+df_temporal  = date_standard(df_numeric, "purchase_date")
+df_imputed   = fill_nulls(df_temporal)
+df_no_skew   = outlier_treat(df_imputed, "unit_price_\$")
+
+# Final business rule verification pass
+final_clean_df = resolve_by_latest_date(df_no_skew, "order_id", "purchase_date")
+
+print(f"Pipeline complete! Output verified with {len(final_clean_df)} valid transactions.")
+```
+
 * 🏆 **Core Champions / VIP Accounts**: Characterized by high transaction frequency and strong total spend. *Recommendation*: Roll out loyalty club benefits, exclusive product pre-access, and focus on premium upsells over heavy discounts.
 * 🚀 **Promising New / Mid-Tier Accounts**: High-potential recent buyers. *Recommendation*: Trigger product education welcome loops and deliver second-purchase bundle rewards to systematically drive transaction frequency.
 * ⚠️ **Churn Risk Inactive Cohort**: Customers who haven't purchased in a long time with flagging system engagement. *Recommendation*: Deploy time-sensitive recovery coupon codes via automated win-back funnels and trigger survey diagnostics to address points of friction.
