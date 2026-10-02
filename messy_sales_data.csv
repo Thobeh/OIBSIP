@@ -1,0 +1,160 @@
+ Order ID ,purchase_date,CustomerName,Category,Quantity, Unit_Price_$,Delivery City
+1028,2025-01-02 04:00:00,Customer_28,ELECTRONICS   ,4.0,259.2,Houston
+1083,2025-01-04 11:00:00,Customer_83,Clothing,4.0,126.44,Los Angeles
+1101,2025-01-05 05:00:00,Customer_101,Books,2.0,348.56,Chicago
+1010,2025-01-01 10:00:00,Customer_10,Electronics,3.0,169.34,New York
+1054,2025-01-03 06:00:00,Customer_54,Clothing,3.0,$260.27,Los Angeles
+1040,2025-01-02 16:00:00,Customer_40,Home & Kitchen,3.0,437.02,Houston
+1136,2025-01-06 16:00:00,Customer_136,Clothing,,349.03,New York
+1087,2025-01-04 15:00:00,Customer_87,Books,1.0,320.43,Houston
+1147,2025-01-07 03:00:00,Customer_147,BOOKS   ,3.0,55.9,Houston
+1107,2025-01-05 11:00:00,Customer_107,Electronics,4.0,463.1,New York
+1069,Missing Date,Customer_69,Clothing,2.0,149.57,Houston
+1080,2025-01-04 08:00:00,Customer_80,Books,3.0,128.61,Los Angeles
+1126,2025-01-06 06:00:00,Customer_126,HOME & KITCHEN   ,2.0,$51.23,New York
+1146,2025-01-07 02:00:00,Customer_146,Books,3.0,288.47,Houston
+1009,2025-01-01 09:00:00,Customer_9,Electronics,2.0,$162.38,Los Angeles
+1033,2025-01-02 09:00:00,Customer_33,home & kitchen,2.0,122.11,New York
+1002,2025-01-01 02:00:00,Customer_2,Home & Kitchen,1.0,46.28,Chicago
+1090,04/01/2025,Customer_90,Clothing,4.0,$419.3,New York
+1091,2025-01-04 19:00:00,,BOOKS   ,4.0,167.18,New York
+1030,02/01/2025,Customer_30,Books,1.0,132.15,Houston
+1070,2025-01-03 22:00:00,Customer_70,ELECTRONICS   ,2.0,28.07,Los Angeles
+1018,2025-01-01 18:00:00,Customer_18,Books,4.0,$285.03,Los Angeles
+1118,2025-01-05 22:00:00,Customer_118,Clothing,4.0,320.22,Houston
+1073,2025-01-04 01:00:00,Customer_73,Home & Kitchen,2.0,35.22,Los Angeles
+1076,2025-01-04 04:00:00,Customer_76,Home & Kitchen,4.0,127.39,Chicago
+1149,2025-01-07 05:00:00,Customer_149,Clothing,4.0,139.95,New York
+1072,2025-01-04 00:00:00,Customer_72,Books,1.0,$256.31,Chicago
+1064,2025-01-03 16:00:00,Customer_64,Books,3.0,486.17,Houston
+1120,06/01/2025,Customer_120,Clothing,4.0,181.11,NY
+1074,2025-01-04 02:00:00,Customer_74,Electronics,1.0,146.54,New York
+1068,2025-01-03 20:00:00,Customer_68,Electronics,,157.43,Houston
+1010,2025-01-01 10:00:00,Customer_10,Electronics,3.0,169.34,Chicago
+1000,01/01/2025,,ELECTRONICS   ,,$367.21,L.A.
+1011,2025-01-01 11:00:00,Customer_11,electronics,3.0,367.51,New York
+1109,2025-01-05 13:00:00,Customer_109,Books,3.0,136.39,Los Angeles
+1112,2025-01-05 16:00:00,Customer_112,ELECTRONICS   ,4.0,282.05,Chicago
+1055,2025-01-03 07:00:00,Customer_55,home & kitchen,4.0,214.53,Houston
+1063,2025-01-03 15:00:00,Customer_63,BOOKS   ,1.0,$188.18,New York
+1097,2025-01-05 01:00:00,Customer_97,Books,4.0,260.93,Los Angeles
+1148,2025-01-07 04:00:00,Customer_148,Electronics,1.0,190.18,New York
+1102,2025-01-05 06:00:00,Customer_102,Home & Kitchen,,199.5,Houston
+1106,2025-01-05 10:00:00,Customer_106,Home & Kitchen,2.0,65.6,Houston
+1018,2025-01-01 18:00:00,Customer_18,Books,4.0,$285.03,Los Angeles
+1077,2025-01-04 05:00:00,Customer_77,CLOTHING   ,4.0,81.0,New York
+1067,2025-01-03 19:00:00,Customer_67,Home & Kitchen,1.0,253.65,Chicago
+1093,2025-01-04 21:00:00,Customer_93,Electronics,2.0,29.98,Chicago
+1084,2025-01-04 12:00:00,Customer_84,CLOTHING   ,3.0,366.83,NY
+1039,2025-01-02 15:00:00,,Electronics,3.0,320.37,Los Angeles
+1143,2025-01-06 23:00:00,,home & kitchen,4.0,328.32,Los Angeles
+1114,2025-01-05 18:00:00,Customer_114,Clothing,3.0,128.51,Los Angeles
+1073,2025-01-04 01:00:00,Customer_73,Home & Kitchen,2.0,35.22,Los Angeles
+1079,2025-01-04 07:00:00,Customer_79,Books,4.0,492.97,Houston
+1088,2025-01-04 16:00:00,Customer_88,home & kitchen,4.0,272.53,New York
+1138,Missing Date,Customer_138,Clothing,3.0,119.89,Houston
+1144,2025-01-07 00:00:00,Customer_144,Books,4.0,$426.12,Chicago
+1100,2025-01-05 04:00:00,Customer_100,Books,3.0,95.44,Los Angeles
+1004,2025-01-01 04:00:00,Customer_4,Clothing,3.0,66.78,Los Angeles
+1058,2025-01-03 10:00:00,Customer_58,Home & Kitchen,3.0,175.43,Los Angeles
+1043,2025-01-02 19:00:00,Customer_43,Electronics,4.0,447.35,Los Angeles
+1086,2025-01-04 14:00:00,Customer_86,Books,2.0,319.83,Los Angeles
+1052,2025-01-03 04:00:00,,Books,3.0,431.76,New York
+1139,2025-01-06 19:00:00,Customer_139,Home & Kitchen,1.0,358.97,Chicago
+1104,2025-01-05 08:00:00,,Electronics,2.0,77.39,New York
+1135,06/01/2025,Customer_135,Clothing,1.0,$278.88,Chicago
+1099,2025-01-05 03:00:00,Customer_99,books,1.0,$326.13,Houston
+1122,2025-01-06 02:00:00,Customer_122,Home & Kitchen,2.0,449.58,New York
+1081,2025-01-04 09:00:00,Customer_81,Clothing,4.0,$339.35,New York
+1130,2025-01-06 10:00:00,,Clothing,4.0,14.51,Los Angeles
+1051,2025-01-03 03:00:00,Customer_51,Home & Kitchen,,410.83,New York
+1142,2025-01-06 22:00:00,Customer_142,Clothing,4.0,375.78,Chicago
+1071,2025-01-03 23:00:00,Customer_71,Home & Kitchen,2.0,308.69,Los Angeles
+1082,2025-01-04 10:00:00,Customer_82,Home & Kitchen,1.0,383.19,New York
+1021,2025-01-01 21:00:00,Customer_21,CLOTHING   ,1.0,266.14,Houston
+1061,2025-01-03 13:00:00,Customer_61,Clothing,3.0,264.21,Los Angeles
+1078,2025-01-04 06:00:00,,Books,3.0,249.83,New York
+1121,2025-01-06 01:00:00,Customer_121,electronics,1.0,365.72,Chicago
+1095,2025-01-04 23:00:00,Customer_95,Clothing,2.0,342.01,Los Angeles
+1031,2025-01-02 07:00:00,Customer_31,Electronics,1.0,211.09,New York
+1062,2025-01-03 14:00:00,Customer_62,Clothing,1.0,354.48,Houston
+1129,2025-01-06 09:00:00,Customer_129,Electronics,4.0,307.15,Chicago
+1111,2025-01-05 15:00:00,Customer_111,Books,3.0,410.44,Los Angeles
+1014,2025-01-01 14:00:00,Customer_14,ELECTRONICS   ,4.0,241.39,Los Angeles
+1075,04/01/2025,Customer_75,Clothing,2.0,455.05,New York
+1013,2025-01-01 13:00:00,,Clothing,3.0,444.73,New York
+1015,01/01/2025,Customer_15,Clothing,999.0,68.6,Chicago
+1076,2025-01-04 04:00:00,Customer_76,Home & Kitchen,4.0,127.39,Chicago
+1064,2025-01-03 16:00:00,Customer_64,Books,3.0,486.17,Houston
+1019,2025-01-01 19:00:00,Customer_19,Home & Kitchen,3.0,387.77,Houston
+1044,2025-01-02 20:00:00,Customer_44,electronics,4.0,274.28,Chicago
+1035,2025-01-02 11:00:00,Customer_35,ELECTRONICS   ,1.0,151.98,Chicago
+1056,2025-01-03 08:00:00,Customer_56,HOME & KITCHEN   ,4.0,118.83,Houston
+1006,2025-01-01 06:00:00,Customer_6,Electronics,1.0,315.42,New York
+1059,2025-01-03 11:00:00,Customer_59,Electronics,1.0,472.03,Houston
+1012,2025-01-01 12:00:00,Customer_12,Clothing,3.0,322.4,Chicago
+1117,2025-01-05 21:00:00,,Clothing,2.0,$451.2,Los Angeles
+1125,2025-01-06 05:00:00,Customer_125,Electronics,4.0,324.6,New York
+1049,2025-01-03 01:00:00,Customer_49,ELECTRONICS   ,2.0,121.69,New York
+1025,2025-01-02 01:00:00,Customer_25,Clothing,2.0,25.4,New York
+1041,2025-01-02 17:00:00,Customer_41,Home & Kitchen,3.0,403.8,Los Angeles
+1133,2025-01-06 13:00:00,Customer_133,BOOKS   ,1.0,12.48,Chicago
+1038,2025-01-02 14:00:00,Customer_38,Books,1.0,405.98,Los Angeles
+1145,2025-01-07 01:00:00,Customer_145,Home & Kitchen,3.0,332.23,Los Angeles
+1042,2025-01-02 18:00:00,Customer_42,CLOTHING   ,2.0,101.42,Houston
+1008,2025-01-01 08:00:00,Customer_8,Books,3.0,41.14,New York
+1032,2025-01-02 08:00:00,Customer_32,Home & Kitchen,4.0,380.22,New York
+1119,2025-01-05 23:00:00,Customer_119,HOME & KITCHEN   ,,176.12,Chicago
+1141,2025-01-06 21:00:00,Customer_141,Clothing,1.0,169.45,New York
+1089,2025-01-04 17:00:00,Customer_89,Clothing,2.0,54.24,Los Angeles
+1001,2025-01-01 01:00:00,Customer_1,Electronics,4.0,387.92,New York
+1124,2025-01-06 04:00:00,Customer_124,Electronics,1.0,392.14,Chicago
+1118,2025-01-05 22:00:00,Customer_118,Clothing,4.0,320.22,Houston
+1065,2025-01-03 17:00:00,,Home & Kitchen,2.0,481.6,Chicago
+1022,2025-01-01 22:00:00,Customer_22,books,2.0,219.5,Houston
+1085,2025-01-04 13:00:00,Customer_85,Home & Kitchen,,190.21,New York
+1046,Missing Date,Customer_46,Home & Kitchen,4.0,449.08,Los Angeles
+1031,2025-01-02 07:00:00,Customer_31,Electronics,1.0,211.09,New York
+1113,2025-01-05 17:00:00,Customer_113,Home & Kitchen,2.0,269.53,New York
+1134,2025-01-06 14:00:00,Customer_134,Electronics,3.0,88.8,Houston
+1132,2025-01-06 12:00:00,Customer_132,electronics,1.0,335.12,L.A.
+1103,2025-01-05 07:00:00,Customer_103,Electronics,4.0,469.0,Chicago
+1128,2025-01-06 08:00:00,Customer_128,Clothing,4.0,450.29,Chicago
+1057,2025-01-03 09:00:00,Customer_57,Clothing,1.0,68.73,Houston
+1053,2025-01-03 05:00:00,Customer_53,Home & Kitchen,4.0,13.41,Los Angeles
+1131,2025-01-06 11:00:00,Customer_131,Electronics,1.0,59.72,Chicago
+1105,05/01/2025,Customer_105,HOME & KITCHEN   ,2.0,177.12,New York
+1024,2025-01-02 00:00:00,Customer_24,Home & Kitchen,4.0,62.87,NY
+1017,2025-01-01 17:00:00,Customer_17,Clothing,,382.78,Los Angeles
+1127,2025-01-06 07:00:00,Customer_127,Home & Kitchen,1.0,89.2,Los Angeles
+1066,2025-01-03 18:00:00,Customer_66,clothing,4.0,133.37,Houston
+1115,Missing Date,Customer_115,Electronics,4.0,55.62,Chicago
+1137,2025-01-06 17:00:00,Customer_137,Books,1.0,329.46,New York
+1094,2025-01-04 22:00:00,Customer_94,Electronics,2.0,299.54,Chicago
+1140,2025-01-06 20:00:00,Customer_140,BOOKS   ,4.0,126.25,New York
+1092,Missing Date,Customer_92,Electronics,2.0,101.39,Houston
+1023,Missing Date,Customer_23,Home & Kitchen,4.0,22.46,Los Angeles
+1036,2025-01-02 12:00:00,Customer_36,Books,4.0,$89.0,NY
+1123,2025-01-06 03:00:00,Customer_123,Books,3.0,444.67,Los Angeles
+1098,2025-01-05 02:00:00,Customer_98,ELECTRONICS   ,2.0,120.98,Chicago
+1005,2025-01-01 05:00:00,Customer_5,Clothing,4.0,432.92,Los Angeles
+1116,2025-01-05 20:00:00,Customer_116,Home & Kitchen,1.0,449.64,Chicago
+1045,02/01/2025,Customer_45,Clothing,-5.0,$405.65,Houston
+1016,2025-01-01 16:00:00,Customer_16,Books,4.0,359.49,Houston
+1048,2025-01-03 00:00:00,Customer_48,Clothing,2.0,63.93,Houston
+1034,2025-01-02 10:00:00,Customer_34,Home & Kitchen,,47.72,Houston
+1003,2025-01-01 03:00:00,Customer_3,Clothing,3.0,185.65,New York
+1047,2025-01-02 23:00:00,Customer_47,Electronics,3.0,165.82,New York
+1060,03/01/2025,Customer_60,Clothing,3.0,168.37,NY
+1110,2025-01-05 14:00:00,Customer_110,clothing,4.0,333.39,Chicago
+1027,2025-01-02 03:00:00,Customer_27,Home & Kitchen,2.0,$164.03,Chicago
+1096,2025-01-05 00:00:00,Customer_96,Clothing,2.0,18.13,Chicago
+1029,2025-01-02 05:00:00,Customer_29,Electronics,4.0,454.71,Houston
+1020,2025-01-01 20:00:00,Customer_20,Electronics,2.0,251.96,Los Angeles
+1078,2025-01-04 06:00:00,,Books,3.0,249.83,New York
+1026,2025-01-02 02:00:00,,Clothing,2.0,321.84,Houston
+1007,2025-01-01 07:00:00,Customer_7,ELECTRONICS   ,1.0,172.14,New York
+1050,2025-01-03 02:00:00,Customer_50,Books,3.0,219.28,New York
+1108,2025-01-05 12:00:00,Customer_108,Home & Kitchen,2.0,$439.9,NY
+1037,2025-01-02 13:00:00,Customer_37,Electronics,1.0,465.55,Los Angeles
+1141,2025-01-06 21:00:00,Customer_141,Clothing,1.0,169.45,New York
