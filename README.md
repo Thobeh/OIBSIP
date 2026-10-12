@@ -1,8 +1,67 @@
-# A. Amazon Electronics Store Analytics Pipeline
+# 📊 E-Commerce & Urban Real Estate Analytics Portfolio
 
-An end-to-end data diagnostics, processing, and exploratory data analysis (EDA) pipeline built in Python. This project evaluates a production dataset containing **50,000 corporate transaction records** across **26 operational variables** to isolate macroeconomic cycles, calculate elasticity, identify major revenue drivers, and map margin erosion.
+A collection of production-grade, end-to-end data analytics and machine learning pipelines engineered in Python. This portfolio showcases structural data diagnostics, time-series financial engineering, customer lifetime value modeling, and multivariate regression analysis using Scikit-Learn, Pandas, NumPy, Matplotlib, and Seaborn.
 
 ---
+
+# 🏡 Module A: Urban Housing Price Predictor
+
+A production-ready **Machine Learning pipeline** evaluating a dataset of urban housing logs (200 rows, 5 columns) to predict property valuations based on property footprints, interior structural components, and neighborhood geospatial elements.
+
+## 🚀 Features
+- **Initial Data Evaluation (EDA):** Dynamically computes missingness ratios, cell-by-cell structural integrity metrics, and transposes tabular descriptive summary distribution metrics for improved visibility.
+- **Feature Interaction Analysis:** Automatically filters numerical columns to avoid structural data type crashes, evaluates Pearson multicollinearity trends, identifies overlapping predictors crossing safe thresholds (>0.80), and maps custom lower-triangular correlation heatmaps.
+- **Robust Pipeline Preprocessing:** Isolates deep data copies to prevent framework mutations, applies rule-based conditional mean/mode statistical imputations, and executes One-Hot Encoding while dropping initial reference levels to circumvent the dummy variable trap.
+- **Dual Regression Fitting:** Splits datasets into clean 80:20 train/test partitions, standardizes structural scales via `StandardScaler`, fits an **Ordinary Least Squares (OLS) Linear Regression** baseline, and trains an **L2-Regularized Ridge Regression Model**.
+- **Production-Grade Diagnostics:** Exports comparative error breakdowns (MSE and R² performance metrics), evaluates linearity alignments using True vs. Predicted scatterplots, checks error variance assumptions through custom purple homoscedasticity residual maps, and visually ranks standardized feature weights.
+
+## 💻 Installation & Core Execution
+Ensure your data science stack dependencies are installed (`pip install pandas numpy matplotlib seaborn scikit-learn`).
+```python
+import pandas as pd
+
+# Load Raw Data Asset
+df_house = pd.read_csv("urban_housing_prices.csv")
+
+# Run complete processing and scaling pipeline
+encoded_data = encode_and_impute(df_house)
+
+# Train, evaluate metrics, and extract modeling weights
+lm, rm, X_train, y_true, y_pred_lr, y_pred_rm, residuals = train_and_evaluate_models(
+    encoded_data, target='Price_ZAR_Thousands'
+)
+```
+
+## 📈 Diagnostic & Performance Report
+
+### 1️⃣ Model Performance Metrics Comparison
+Both models performed exceptionally well, capturing over **94%** of the underlying variance in urban property prices.
+
+| Algorithm Variation | Mean Squared Error (MSE) | Coefficient of Determination (R²) |
+| :--- | :---: | :---: |
+| **OLS Linear Regression** | 209.32 | 0.9498 |
+| **Ridge Regression (L2)** | 213.50 | 0.9488 |
+
+### 2️⃣ Feature Correlation Dynamics
+- **`SqFootage` (Square Footage):** Exhibits an exceptionally dominant positive correlation (**+0.84**) with property price, indicating that footprint size is the single most critical driver of high house valuations.
+- **`DistToCenter` (Distance to Urban Center):** Displays a pronounced negative linear correlation (**-0.49**) with price, confirming that property valuation drops significantly the further a house is located from the downtown city hub.
+- **Multicollinearity Integrity Check:** Internal overlap checks returned scores safely below the **0.80** threshold across all predictor interactions, proving that the independent input vectors do not suffer from damaging structural collinearity risks.
+
+### 3️⃣ Standardized Coefficient Weights Impact
+By tracking the final slopes across standardized feature sets, the model ranks feature importance on property pricing in the following sequence:
+1. **`SqFootage` (+40.0+ Weight):** The absolute primary predictor for valuation increases.
+2. **`DistToCenter` (~ -22.0 Weight):** The primary geographic discount factor.
+3. **`Bedrooms` (~ +12.0 Weight):** Secondary structure space validation layer.
+4. **`NoiseLevel` (Negligible Impact):** Shows close to zero statistical impact on boundary choices.
+
+### 4️⃣ Homoscedasticity Error Check
+Plotting the model residuals against the model's target estimations showed a random distribution of error variations tightly clustered along the horizontal **y=0** balance line. This total absence of distinct shapes or funneling visual distributions mathematically confirms **homoscedasticity**, verifying that the regression modeling pipeline assumptions are statistically valid, non-biased, and safe for development deployments.
+
+---
+
+# 🛒 Module B: Amazon Electronics Store Analytics Pipeline
+
+An end-to-end data diagnostics, processing, and exploratory data analysis (EDA) pipeline built in Python. This project evaluates a production dataset containing **50,000 corporate transaction records** across **26 operational variables** to isolate macroeconomic cycles, calculate elasticity, identify major revenue drivers, and map margin erosion.
 
 ## 📊 Pipeline Architecture & Workflow
 
@@ -17,34 +76,11 @@ graph TD
     G --> H[Business Insights Isolation]
 ```
 
----
-
 ## 🛠️ Technical Features & Engineering Highlights
-
 * **Automated Schema Sanitization:** Eliminates string spacing and case-sensitivity vulnerabilities by programmatically normalising raw headers.
 * **Time-Series Financial Resampling:** Parses raw transaction strings into active DateTime indices, downsampling transaction velocity into month-end (`ME`) and quarter-end (`QE`) financial horizons.
 * **Correlative Dependency Matrixing:** Implements Pearson correlation mapping to find explicit dependencies between sales volume, logistics overhead, and profit erosion.
 * **Bivariate Density Mapping:** Utilizes high-density Hexbin maps to isolate discrete purchase frequency concentrations against promotional markdown bounds.
-
----
-
-## 💻 Dependencies & Setup
-
-This pipeline is optimized for Python 3.10+ and relies on standard data science libraries:
-
-```bash
-pip install pandas matplotlib seaborn numpy ipykernel
-```
-
-To run the pipeline, clone the repository, ensure `amazon_electronics_sales.csv` is in the same directory, and launch the notebook:
-
-```bash
-git clone https://github.com
-cd amazon-electronics-analytics
-jupyter notebook
-```
-
----
 
 ## 📂 Code Module Breakdown
 
@@ -68,27 +104,18 @@ def monthly_quaterly_sales(store_df):
     df_temp = store_df.set_index("order_date")
     monthly_sales = df_temp["sales"].resample("ME").sum()
     quarterly_sales = df_temp["sales"].resample("QE").sum()
-    # Lineplot trend visualizer...
 ```
 * **Purpose:** Dynamically changes data resolution into standard fiscal reporting buckets to track market spending ebbs and flows over time.
 
-### 3. Pearson Correlation Heatmap
+### 3. Pearson Correlation Heatmap & Bivariate concentration Hex Map
 ```python
 def df_corr(store_df):
     corr_df = store_df.corr(numeric_only=True)
-    # Seaborn coolwarm mapping matrix...
-```
-* **Purpose:** Calculates mathematical dependencies between variables to uncover hidden margin drivers and operational cost behaviors.
 
-### 4. Bivariate Concentration Hex Map
-```python
 def df_hex(store_df):
     hb = ax.hexbin(store_df["discount"], store_df["quantity"], gridsize=15, cmap="YlOrRd")
-    # Colorbar density scaler...
 ```
-* **Purpose:** Aggregates thousands of overlapping data points into distinct, shaded cells to reveal exact customer demand clusters under different pricing models.
-
----
+* **Purpose:** Uncovers hidden margin drivers and operational cost behaviors by calculating mathematical dependencies, and maps overlapping customer demand clusters under different pricing models.
 
 ## 📈 Deep-Dive Analytical Insights
 
@@ -103,272 +130,3 @@ def df_hex(store_df):
 ### 3. Linear Correlation Matrix & Profit Leaks
 * **Logistics Overhead:** An absolute correlation coefficient of **1.00** connects gross sales directly to shipping costs, proving that distribution overhead scales identically beside revenue. 
 * **Margin Drain:** A heavy negative correlation of **-0.52** links promotional discounts with net profits, proving mathematically that markdown strategies act as the single largest drag on corporate value.
-* **Business Takeaway:** Establish strict promotional markdown caps to stop the **-0.52 profit leak**. Furthermore, since customer age attributes show an exact **0.00 correlation** with sales metrics, avoid dividing marketing budgets by generation; buying scale remains completely uniform across demographics.
-
-### 4. Price Elasticity via Density Mapping
-* **Volume Inelasticity:** The hexagonal concentration map reveals that the highest purchase frequency (over **6,000+ orders**) occurs exclusively at a **0.0 discount rate** across all quantity tiers (1 through 5). Lowering prices to 10%, 20%, 40%, or 60% fails to move buyers into higher-volume groupings.
-* **Business Takeaway:** Widespread discounting is highly inefficient. Customers purchase identical quantities regardless of price incentives, meaning markdowns only degrade margins without generating a meaningful lift in sales volume.
-
-# B. Customer Segmentation & Analytics Pipeline (RFM + CLV + K-Means)
-
-An end-to-end data science and business intelligence pipeline engineered in Python to ingest raw transactional sales logs, perform data cleaning, extract high-value customer health features (RFM metrics), calculate Customer Lifetime Value (CLV), and systematically categorize users into action-oriented value tiers using K-Means clustering.
-
-## Pipeline Architecture & Features
-
-This system automatically translates tabular, raw transaction-level databases into strategic marketing layers using the following modular functions:
-
-1. **Ingestion & Integrity Assessment (`load_inspect`)**: Checks dimensions, scans for structural issues, null flags, and duplicated entry records.
-2. **Data Type Harmonization (`df_clean`)**: Safely casts transactional timestamps and coerces monetary fields into numerical floats.
-3. **Null Imputation Layer (`handle_nulls`)**: Dynamically isolates and fills gaps—using non-numeric categorical modes or statistical numeric averages.
-4. **Column Standardization (`standardize_cols`)**: Sanitizes fields into a globally accessible `snake_case` taxonomy.
-5. **Feature Engineering Engine (`rfm_clv`)**:
-   * **Recency (R)**: Days elapsed between the user's latest transaction and the historical data snapshot window.
-   * **Frequency (F)**: Aggregate unique volume of specific transaction occurrences.
-   * **Monetary (M)**: Aggregate absolute monetary spend profile across time.
-   * **Churn Diagnostics**: Automatically flags churned states against defined threshold horizons (e.g., 90 days) and builds cohort metrics.
-   * **CLV Mapping**: Infers explicit Customer Lifetime Value based on dynamic Average Purchase Value (APV) scaling.
-6. **Machine Learning Normalization & Cluster Optimization (`apply_customer_segmentation`)**: Runs mathematical standard scaling (`StandardScaler`), builds a Within-Cluster Sum of Squares (WCSS) iteration loop, generates a dynamic **Elbow Plot**, and maps optimal user-tier index keys back to customer entities.
-7. **Production Business Reporting (`execute_cluster_analytics_report`)**: Renders bivariate cluster boundary scatter subplots, customer account volume counts, and yields a natural language processing mapping framework to output data-driven strategic marketing recommendations.
-
----
-
-## Repository File Layout
-
-```text
-├── data/
-│   └── AfroSense Sales Data.xlsx     # Target raw transactional ledger file
-├── customer_analytics_pipeline.ipynb # Core algorithmic notebook workflow
-└── README.md                         # Pipeline documentation and architecture
-```
-
----
-
-## Technical Prerequisites & Environment
-
-Ensure you have a modern Python 3.x distribution environment installed. The pipeline heavily utilizes the following analytics libraries:
-
-```bash
-pip install numpy pandas matplotlib seaborn scikit-learn openpyxl
-```
-
----
-
-## How to Execute the Pipeline
-
-Open `customer_analytics_pipeline.ipynb` inside your target notebook server environment or IDE. To run the structural execution pattern programmatically, follow this functional order:
-
-```python
-import pandas as pd
-# Import functions defined within the notebook cells...
-
-# 1. Load data
-_file = "data/AfroSense Sales Data.xlsx"
-raw_df = pd.read_excel(_file)
-
-# 2. Run sequential cleaning and transformation
-inspected_df   = load_inspect(raw_df)
-standardized   = standardize_cols(inspected_df)
-cleaned        = df_clean(standardized)
-null_cleansed  = handle_nulls(cleaned)
-
-# 3. Structural feature extraction (RFM matrix + CLV modeling)
-customer_profiles = rfm_clv(null_cleansed)
-
-# 4. Fit K-Means Clustering model (Runs Elbow Plot & Labels Datasets)
-segmented_df = apply_customer_segmentation(customer_profiles)
-
-# 5. Renders comprehensive scatter/bar analytics plots & strategic summaries
-execute_cluster_analytics_report(segmented_df)
-```
-
----
-
-## Visualizations & Automated Reporting Outputs
-
-### 1. Optimal Cluster (K Parameter) Selection
-The pipeline renders a diagnostic **Elbow Method Curve** using calculated WCSS metrics up to K=10. It superimposes a typical mathematical elbow benchmark at K=3 to help you decide how many customer tiers are ideal for your dataset.
-
-### 2. Segment Splitting Evaluation Plots
-Generates multi-pane internal visual comparisons mapping **Recency vs. Monetary** boundaries and **Frequency vs. Monetary** boundaries to prove variance separation between customer types.
-
-### 3. Automatically Generated Marketing Frameworks
-Based on data traits processed during execution, the reporting engine classifies and prints customized strategy briefs for each value tier:
-
-# Algorithmic Data Profiling & Cleansing Pipeline
-
-A modular, automated Python pipeline engineered to perform end-to-end Extraction, Transformation, and Loading (ETL) tasks on raw, structurally flawed transaction datasets. This framework programmatically identifies and treats standard corporate data anomalies—including missing entries, data type mismatches, statistical outliers, and identity conflicts—to generate highly reliable tables ready for downstream Machine Learning models and Business Intelligence dashboards.
-
-## 🚀 Key Features & Architectural Overview
-
-*   **Baseline Quality Snapshotting:** Benchmarks incoming dataset health by compiling matrix row configurations, total null footprints, and exact duplicate logs prior to any transformation execution.
-*   **Column Name Standardisation:** Programmatically enforces clear naming rules by stripping out white spaces, forcing lowercase text, and swapping spaces with clean snake_case markers.
-*   **Dynamic Identity Resolution:** Implements a strict duplicate handling mechanism. It distinguishes between global duplicates and partial value variations under identical primary keys, safely applying time-series overrides to keep only the newest records.
-*   **Multi-Strategy Value Imputation:** Applies targeted handling for missing data:
-    *   *Numerical Fields:* Standardises fields and replaces missing values with structural column averages.
-    *   *Categorical Fields:* Identifies gaps and fills them with the most frequent data grouping (Mode).
-    *   *Temporal Fields:* Ensures chronological consistency by filling missing dates with the most common date entry.
-*   **Statistical Outlier Treatment:** Leverages absolute Z-Scores from the `scipy.stats` engine to isolate and discard mathematical anomalies falling outside three standard deviations.
-
-## 🛠️ Tech Stack & Dependencies
-
-*   **Language:** Python 3.12+
-*   **Libraries:** `pandas`, `numpy`, `scipy`
-*   **Environment:** Jupyter Notebook / Google Colab
-
-## 📂 Project Structure & Script Breakdown
-
-The pipeline runs sequentially through specialized, functional modules:
-
-| Function Module | Operational Responsibility |
-| :--- | :--- |
-| `initial_copy(df)` | Benchmarks structural dimensions and saves a deep memory backup copy of the raw dataset. |
-| `col_standard(df)` | Cleans structural metadata into clean lowercase `snake_case` column headers. |
-| `generate_quality_report(data)` | Audits missing fields, exact duplicates, and field layout summaries. |
-| `find_partial_duplicates(df, key)` | Isolates mismatched entries sharing an identical primary key value. |
-| `resolve_by_latest_date(df, key, date)` | Parses mixed timelines to preserve only the most recent transaction snapshot. |
-| `text_col_standard(df, col)` | Scrubs strings using Regex (`[^0-9.]`) to isolate numbers and casts fields to numeric types. |
-| `date_standard(df, date_col)` | Resolves mixed temporal text layouts into standardised `datetime64[ns]` fields. |
-| `fill_nulls(df)` | Executes Mean/Mode imputation algorithms across numerical, categorical, and temporal fields. |
-| `outlier_treat(df, col_name)` | Removes statistical anomalies using a standard ±3σ Z-Score filter boundary. |
-
-## 📊 Pipeline Execution Profile (Dataset Analysis Results)
-
-When evaluated against a messy sales dataset containing `159 rows` and `7 columns`, the pipeline achieved the following operational milestones:
-
-1.  **Initial Audit:** Detected `22 missing fields` and `8 exact duplicate rows`.
-2.  **Structural Cleaning:** Reconfigured arbitrary headers (` Order ID `, ` Unit_Price_$`, etc.) into reliable keys (`order_id`, `unit_price_$`).
-3.  **Conflict Resolution:** Located critical business-rule conflicts (e.g., Order `1010` assigned to two different delivery locations). Automatically kept the correct entry based on chronological order.
-4.  **Imputation Run:** Replaced missing counts in the `quantity` column with the dataset average (`9.59`) and fixed missing text entries with the row mode (`Customer_10`).
-5.  **Output Integrity:** Generated a cleaned, normalized data table containing `150 rows` across `7 fully verified columns`, matching standard target database schemas.
-
-## 💻 Quick Start & Usage
-
-To execute the data cleaning pipeline on your own machine or inside a Google Colab notebook instance, clone this repository and follow the snippet below:
-
-```python
-import pandas as pd
-from pipeline_script import initial_copy, col_standard, remove_dup, text_col_standard, date_standard, fill_nulls, outlier_treat, resolve_by_latest_date
-
-# Ingest raw transaction file
-raw_data = pd.read_csv("messy_sales_data.csv")
-
-# Run through the modular ETL pipeline steps sequentially
-df_snapshot = initial_copy(raw_data)
-df_clean_cols = col_standard(df_snapshot)
-df_deduped   = remove_dup(df_clean_cols)
-df_numeric   = text_col_standard(df_deduped, "unit_price_\$")
-df_temporal  = date_standard(df_numeric, "purchase_date")
-df_imputed   = fill_nulls(df_temporal)
-df_no_skew   = outlier_treat(df_imputed, "unit_price_\$")
-
-# Final business rule verification pass
-final_clean_df = resolve_by_latest_date(df_no_skew, "order_id", "purchase_date")
-
-print(f"Pipeline complete! Output verified with {len(final_clean_df)} valid transactions.")
-```
-
-* 🏆 **Core Champions / VIP Accounts**: Characterized by high transaction frequency and strong total spend. *Recommendation*: Roll out loyalty club benefits, exclusive product pre-access, and focus on premium upsells over heavy discounts.
-* 🚀 **Promising New / Mid-Tier Accounts**: High-potential recent buyers. *Recommendation*: Trigger product education welcome loops and deliver second-purchase bundle rewards to systematically drive transaction frequency.
-* ⚠️ **Churn Risk Inactive Cohort**: Customers who haven't purchased in a long time with flagging system engagement. *Recommendation*: Deploy time-sensitive recovery coupon codes via automated win-back funnels and trigger survey diagnostics to address points of friction.
-
-# 🏡 Urban Housing Price Predictor
-
-A production-ready **Machine Learning pipeline** built in Python using **Scikit-Learn, Pandas, NumPy, and Seaborn**. This project evaluates, cleans, processes, and fits multivariate linear regression models to predict urban housing valuations in South Africa (ZAR) based on property footprints, interior structural components, and neighborhood geospatial elements.
-
----
-
-## 🚀 Features
-- **Initial Data Evaluation (EDA):** Dynamically computes missingness ratios, cell-by-cell structural integrity metrics, and transposes tabular descriptive summary distribution metrics for improved visibility.
-- **Feature Interaction Analysis:** Automatically filters numerical columns to avoid structural data type crashes, evaluates Pearson multicollinearity trends, identifies overlapping predictors crossing safe thresholds (>0.80), and maps custom lower-triangular correlation heatmaps.
-- **Robust Pipeline Preprocessing:** Isolates deep data copies to prevent framework mutations, applies rule-based conditional mean/mode statistical imputations, and executes One-Hot Encoding while dropping initial reference levels to circumvent the dummy variable trap.
-- **Dual Regression Fitting:** Splits datasets into clean 80:20 train/test partitions, standardizes structural scales via `StandardScaler`, fits an **Ordinary Least Squares (OLS) Linear Regression** baseline, and trains an **L2-Regularized Ridge Regression Model**.
-- **Production-Grade Diagnostics:** Exports comparative error breakdowns (MSE and R² performance metrics), evaluates linearity alignments using True vs. Predicted scatterplots, checks error variance assumptions through custom purple homoscedasticity residual maps, and visually ranks standardized feature weights.
-
----
-
-## 🛠️ Tech Stack
-- **Languages:** Python 3.10+
-- **Libraries:** Pandas, NumPy, Scikit-Learn
-- **Visualization:** Matplotlib, Seaborn
-
----
-
-## 📂 Repository Structure
-```bash
-├── urban_housing_prices.csv   # Target dataset housing logs (Shape: 200 rows, 5 columns)
-├── housing_analysis.ipynb     # Jupyter/Colab notebook containing pipeline execution
-└── README.md                  # Project documentation and diagnostic report
-```
-
----
-
-## ⚙️ Getting Started
-
-### Prerequisites
-Ensure you have the following core data stack dependencies installed locally:
-- `numpy`
-- `pandas`
-- `matplotlib`
-- `seaborn`
-- `scikit-learn`
-
-### Installation & Execution
-1. Clone this repository to your machine:
-   ```bash
-   git clone https://github.com
-   cd your-repo-name
-   ```
-2. Run the processing pipeline inside a Python environment or Jupyter notebook cell:
-   ```python
-   import pandas as pd
-
-   # Load Raw Data Asset
-   df_house = pd.read_csv("urban_housing_prices.csv")
-
-   # Run complete processing and scaling pipeline
-   encoded_data = encode_and_impute(df_house)
-
-   # Train, evaluate metrics, and extract modeling weights
-   lm, rm, X_train, y_true, y_pred_lr, y_pred_rm, residuals = train_and_evaluate_models(
-       encoded_data, target='Price_ZAR_Thousands'
-   )
-   ```
-
----
-
-## 📊 Regression Diagnostics & Model Performance Report
-
-The source code execution generated the following modeling evaluations and statistical validations:
-
-### 1️⃣ Model Performance Metrics Comparison
-Both models performed exceptionally well, capturing over **94%** of the underlying variance in urban property prices.
-
-| Algorithm Variation | Mean Squared Error (MSE) | Coefficient of Determination (R²) |
-| :--- | :---: | :---: |
-| **OLS Linear Regression** | 209.32 | 0.9498 |
-| **Ridge Regression (L2)** | 213.50 | 0.9488 |
-
----
-
-### 2️⃣ Feature Correlation Dynamics
-The internal `select_features` exploratory phase mapped key linear interactions between independent variables and property valuations:
-
-- **`SqFootage` (Square Footage):** Exhibits an exceptionally dominant positive correlation (**+0.84**) with property price. This indicates that property space size is the single most critical driver of high house valuations.
-- **`DistToCenter` (Distance to Urban Center):** Displays a pronounced negative linear correlation (**-0.49**) with price. This mathematically confirms that property valuation drops significantly the further a house is located from the downtown city hub.
-- **Multicollinearity Integrity Check:** Internal overlap checks returned scores safely below the **0.80** threshold across all predictor interactions, proving that the independent input vectors do not suffer from damaging structural collinearity risks.
-
----
-
-### 3️⃣ Standardized Coefficient Weights Impact
-By tracking the final slopes across standardized feature sets, the model ranks feature importance on property pricing in the following sequence:
-
-1. **`SqFootage` (+40.0+ Weight):** The absolute primary predictor for valuation increases.
-2. **`DistToCenter` (~ -22.0 Weight):** The primary geographic discount factor.
-3. **`Bedrooms` (~ +12.0 Weight):** Secondary structure space validation layer.
-4. **`NoiseLevel` (Negligible Impact):** Shows close to zero statistical impact on boundary choices.
-
----
-
-### 4️⃣ Homoscedasticity Error Check
-Plotting the model residuals (Errors = True - Predicted) against the model's target estimations showed a random distribution of error variations tightly clustered along the horizontal **y=0** balance line. This total absence of distinct shapes or funneling visual distributions mathematically confirms **homoscedasticity**, verifying that the regression modeling pipeline assumptions are statistically valid, non-biased, and safe for development deployments.
-
