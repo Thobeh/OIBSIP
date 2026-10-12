@@ -127,6 +127,83 @@ def df_hex(store_df):
 * **Enterprise Dependencies:** A tiny fraction of enterprise business hardware accounts for a massive proportion of global top-line numbers. The **Canon imageCLASS Copier** and **Cisco Smart Office Phone** are core revenue anchors, generating over **\$4.0 million** each. Premium office furniture occupies the secondary tier around **\$2.4 million**, while smartphones baseline at **\$2.0 million**.
 * **Business Takeaway:** Procurement teams must safeguard relationships with these hardware suppliers to ensure uninterrupted inventory flow and prevent critical stockouts.
 
+* # Wine Quality Classification Pipeline
+
+An end-to-end Machine Learning implementation designed to evaluate and predict wine quality using advanced classification techniques. The architecture integrates a rigorous data preprocessing pipeline, automated hyperparameter optimization via `GridSearchCV`, and comprehensive diagnostic visualization frameworks.
+
+This project forms part of the **Oasis Infobyte Data Analytics Internship** requirements.
+
+---
+
+## 🚀 Core Features & Architectural Workflow
+
+### 1. Ingestion & Structured Preprocessing
+* **Dynamic Target Engineering:** Transforms regular wine quality scores into structural labels (`Good` ≥ 6 vs. `Bad` < 6).
+* **Stratified Validation Splitting:** Employs an 80/20 train/test split with stratification to maintain exact target distribution across both domains.
+* **Feature Variance Standardization:** Scaled feature fields using `StandardScaler` to protect modeling metrics from dimensional bias.
+
+### 2. Multi-Framework Optimization Pipeline
+Executes automated parameter space sweeping with 5-Fold Cross-Validation, specifically optimizing for **Macro F1-Score** to balance performance tracking across both target domains:
+* **Random Forest Classifier:** Tunes depth, split metrics, and estimator volume.
+* **SGD Classifier (Stochastic Gradient Descent):** Tunes structural loss types (`hinge` vs. `log_loss`), regulation penalties (`l1`/`l2`), and learning rates.
+* **SVC (Support Vector Classification):** Tunes soft-margin variables (C) and boundary kernels (`linear` vs. `rbf`).
+
+### 3. Diagnostic & Comparative Evaluation
+* **Performance Benchmark Matrix:** Consolidated scoring reports comparing multi-model tracking profiles side-by-side.
+* **Heatmap Matrix:** Side-by-side execution of annotated validation maps to track true-versus-predicted output paths.
+* **Feature Priority Ranking:** Extracts structural importance scores from the top-performing ensemble tree pipeline for domain insights.
+
+---
+
+## 📈 Performance Summary
+
+The model parameters were optimized using cross-validation, resulting in competitive accuracies across all evaluators:
+
+| Model Framework | Accuracy Score | Macro F1-Score |
+| :--- | :---: | :---: |
+| **Random Forest** | 70.94% | 0.6977 |
+| **SGD Classifier** | **71.56%** | **0.7009** |
+| **SVC (Support Vector)** | 71.25% | 0.7005 |
+
+---
+
+## 🛠️ Technology Stack & Libraries
+
+* **Core Analysis:** `pandas`, `numpy`
+* **Visualization Engine:** `matplotlib`, `seaborn`
+* **Machine Learning & Tuning:** `scikit-learn`
+
+---
+
+## 📂 Project Structure
+
+```text
+├── uci_wine_quality_red.csv  # Physicochemical properties dataset
+├── wine_quality_pipeline.ipynb # Full pipeline implementation notebook
+└── README.md                  # Project overview and architecture documentation
+```
+
+---
+
+## 🎯 Implementation Steps
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com
+   ```
+2. **Ensure all standard numerical and parsing dependencies are loaded:**
+   ```bash
+   pip install pandas numpy matplotlib seaborn scikit-learn
+   ```
+3. **Execute the execution loop within your data notebook to run the optimization block:**
+   ```python
+   # Run full pipeline sequence
+   X_tr, X_te, y_tr, y_te = load_and_preprocess_data("uci_wine_quality_red.csv")
+   tuned_models = train_and_tune_models(X_tr, y_tr)
+   evaluate_and_compare(tuned_models, X_te, y_te)
+   ```
+
+
 ### 3. Linear Correlation Matrix & Profit Leaks
 * **Logistics Overhead:** An absolute correlation coefficient of **1.00** connects gross sales directly to shipping costs, proving that distribution overhead scales identically beside revenue. 
 * **Margin Drain:** A heavy negative correlation of **-0.52** links promotional discounts with net profits, proving mathematically that markdown strategies act as the single largest drag on corporate value.
